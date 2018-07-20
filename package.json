@@ -2,6 +2,7 @@
   "name": "lktk-jevousecoute",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://loukotiko.github.io/jevousecoute",
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -11,7 +12,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "mv build docs",
+    "postbuild": "rm -r -f docs && mv build docs",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
