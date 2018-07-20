@@ -2,12 +2,13 @@
   "name": "lktk-jevousecoute",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://loukotiko.github.io/jevousecoute",
+  "homepage": "http://loukotiko.github.io/jevousecoute",
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-textfit": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

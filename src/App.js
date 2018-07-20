@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import { Textfit } from 'react-textfit'
+
 import allWords from './words'
 
 function shuffle(array) {
@@ -49,6 +51,9 @@ class App extends React.Component {
   
   nextWord() {
     const word = this.state.availableWords.pop();
+    
+    if(!word) return this.endGame()
+    
     this.state.usedWords.push({word, found: false});
     
     this.setState({
@@ -72,7 +77,7 @@ class App extends React.Component {
           ? <ul className="words">
               { this.state.usedWords.map((entry, i) => (<li key={i}>{ entry.word }</li>)) }
             </ul>
-          : <div className="word" onClick={ this.nextWord }>{ this.state.currentWord }</div>
+          : <Textfit mode="multiple" className="word" onClick={ this.nextWord }>{ this.state.currentWord }</Textfit>
         }
         
         { this.state.started && <div className="count">{ this.state.usedWords.length }</div> }
