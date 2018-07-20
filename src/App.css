@@ -1,0 +1,93 @@
+.word {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-family: 'Flamenco', sans-serif;
+  font-size: 4em;
+  line-height: 0.8em;
+  
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.words {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-family: 'Asap', sans-serif;
+  font-size: 1.2em;
+  
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  max-height: 500px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.words li {
+    counter-increment: wordindex;
+    padding: 6px 0;
+}
+
+.words li:nth-child(even) {
+    background: #DEDEDE;
+}
+
+.words li.found {
+    background: green;
+}
+
+.words li::before {
+    content: counter(wordindex);
+    position: absolute;
+    left: 10px;
+}
+
+.count {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+    padding: 10px 0;
+
+    font-family: 'Asap', sans-serif;
+    font-size: 2em;
+    
+    text-align: center;
+}
+
+nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+}
+
+nav button {
+    
+  font-family: 'Asap', sans-serif;
+  font-size: 1.5em;
+  
+  text-transform: uppercase;
+  
+  background: var(--primary-color);
+  color: var(--light-color);
+
+  padding: 10px 20px;
+  
+  margin: 0 10px;
+
+  border: 0;
+  border-radius: 5px;
+}

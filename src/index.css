@@ -1,0 +1,21 @@
+:root {
+  /* https://coolors.co/404e4d-ee4266-fcfcfc-23b5d3-f3a712 */
+  --black: #404e4d;
+  --red: #ee4266;
+  --white: #fcfcfc;
+  --blue: #23b5d3;
+  --orange: #f3a712;
+  
+  --primary-color: var(--blue);
+  --secondary-color: var(--red);
+  --ternary-color: var(--orange);
+  --light-color: var(--white);
+  --dark-color: var(--black);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--light-color);
+  color: var(--dark-color);
+}
