@@ -35,12 +35,18 @@ body {
 
     cursor: pointer;
     
-    padding: 20px;
-    
     background: var(--background-color);
     color: var(--text-color);
     
     border-radius: 10px;
+}
+
+.word div {
+    padding: 20px;
+}
+
+.word div + div {
+    border-top: 2px solid #DEDEDE;
 }
 
 .words {

@@ -77,7 +77,9 @@ class App extends React.Component {
           ? <ul className="words">
               { this.state.usedWords.map((entry, i) => (<li key={i}>{ entry.word }</li>)) }
             </ul>
-          : <Textfit mode="multiple" className="word" onClick={ this.nextWord }>{ this.state.currentWord }</Textfit>
+          : <Textfit mode="multiple" className="word" onClick={ this.nextWord }>
+              { this.state.currentWord && this.state.currentWord.split(' || ').map(word => (<div>{ word }</div>)) }
+            </Textfit>
         }
         
         { this.state.started && <div className="count">{ this.state.usedWords.length }</div> }
