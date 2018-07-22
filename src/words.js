@@ -121,7 +121,7 @@ export default [
     'Prendre son courage à deux mains',
     'Godzilla',
     'Visage',
-    'Empoisonné || Empoisonnée',
+    'Empoisonner',
     'Téléphone',
     'Thunes',
     'Pomme',
