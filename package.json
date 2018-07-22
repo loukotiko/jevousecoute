@@ -2,7 +2,7 @@
   "name": "lktk-jevousecoute",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://loukotiko.github.io/jevousecoute",
+  "homepage": "http://jve.loukotiko.fr/",
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
