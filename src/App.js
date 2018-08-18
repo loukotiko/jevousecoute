@@ -3,8 +3,6 @@ import './App.css';
 
 import { Textfit } from 'react-textfit'
 
-import allWords from './words'
-
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -28,25 +26,33 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {}
+    this.state = {
+      usedWords : [],
+      allWords: []
+    }
     
     this.newGame = this.newGame.bind(this)
     this.nextWord = this.nextWord.bind(this)
     this.endGame = this.endGame.bind(this)
-  }
-  
-  componentDidMount() {
-    this.newGame()
+
+    // Get a reference to the database service
+    // Initialize Cloud Firestore through Firebase
+    var database = window.firestore;
+    this.words = database.collection('words').get().then((querySnapshot) => {
+      console.log(querySnapshot)
+      this.setState({
+        allWords: querySnapshot.docs.map(doc => doc.data().variants)
+      })
+    })
   }
   
   newGame() {
     this.setState({
-      availableWords: shuffle([...allWords]),
-      currentWord: 'Je vous écoute',
+      availableWords: shuffle([...this.state.allWords]),
       usedWords: [],
       ended: false,
       started: false
-    });
+    }, () => this.nextWord() )
   }
   
   nextWord() {
@@ -70,24 +76,49 @@ class App extends React.Component {
   }
   
   render() {
+    const HomePage = ( 
+      <Textfit mode="multi" className="word" onClick={ this.newGame }>Je vous écoute !</Textfit>
+    )
 
-    return (
+    const WordPage = (
+      <Textfit mode="multi" className="word" onClick={ this.nextWord }>
+        { this.state.currentWord && this.state.currentWord.map((word, i) => (<div key={i}>{ word }</div>)) }
+      </Textfit>
+    )
+
+    const WordListPage = (
+      <ul className="words">
+        { this.state.usedWords.map((entry, i) => (
+          <li key={i}>
+          { entry.word.map(
+            (word, i) => ( <div key={i}>{ word }</div> )
+          ) }
+          </li>)
+        ) }
+      </ul>
+    )
+
+    const GamePage = (this.state.ended ? WordListPage : WordPage)
+    
+    const Nav = (
+      <nav>
+        <button onClick={ this.newGame }>Nouvelle partie</button>
+        { !this.state.ended && <button onClick={ this.endGame }>Voir les mots</button> }
+      </nav>
+    )
+
+    const Counter = ( <div className="count">{ this.state.usedWords.length }</div> )
+   
+    return ( !!this.state.allWords.length &&
       <div className="content">
-        { this.state.ended
-          ? <ul className="words">
-              { this.state.usedWords.map((entry, i) => (<li key={i}>{ entry.word }</li>)) }
-            </ul>
-          : <Textfit mode="multiple" className="word" onClick={ this.nextWord }>
-              { this.state.currentWord && this.state.currentWord.split(' || ').map(word => (<div>{ word }</div>)) }
-            </Textfit>
+        { this.state.started
+          ? <div>
+              { GamePage }
+              { Counter }
+              { Nav }
+            </div>
+          : HomePage
         }
-        
-        { this.state.started && <div className="count">{ this.state.usedWords.length }</div> }
-        
-        <nav>
-          { this.state.started && <button onClick={ this.newGame }>Nouvelle partie</button> }
-          { this.state.started && !this.state.ended && <button onClick={ this.endGame }>Voir les mots</button> }
-        </nav>
       </div>
     );
   }

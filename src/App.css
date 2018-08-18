@@ -83,6 +83,14 @@ body {
     left: 10px;
 }
 
+.words li div {
+    display: inline;
+}
+
+.words li div + div::before {
+    content : ' / ';
+}
+
 .count {
     position: absolute;
     top: 0;
