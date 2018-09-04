@@ -13,7 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "rm -r -f docs && mv build docs",
+    "postbuild": "(rm -rf docs && mv build docs) || (rmdir docs /s /q && move build docs)",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
